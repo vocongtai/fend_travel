@@ -1,5 +1,3 @@
-import { urlCheckURL } from "./urlChecker";
-
 const handleSubmit = (event) => {
   event.preventDefault();
 
@@ -8,7 +6,8 @@ const handleSubmit = (event) => {
   let dataPick = document.getElementById("date").value;
   let imageCity = "";
   let imageCountry = "";
-  const resultForm = document.getElementById("results");
+  const resultForm = document.getElementById("results-weather");
+  console.log(resultForm);
 
   //   Client.checkForName(formText);
   console.log(formText);
@@ -19,18 +18,18 @@ const handleSubmit = (event) => {
     console.log("::: Form Submitted :::");
     getNameAPI("http://localhost:8081/geoname", { location: formText }).then(
       (data) => {
-        console.log("data: ", data);
+        // console.log("data: ", data);
         pixabayAPI("http://localhost:8081/pixabay", { place: data.city }).then(
           (imageData) => {
             imageCity = imageData;
-            console.log("imageCity: ", imageCity);
+            // console.log("imageCity: ", imageCity);
           }
         );
         pixabayAPI("http://localhost:8081/pixabay", {
           place: data.country,
         }).then((imageData) => {
           imageCountry = imageData;
-          console.log("country: ", imageCountry);
+          // console.log("country: ", imageCountry);
         });
         weatherAPI("http://localhost:8081/weather", {
           lat: data.lat,
@@ -40,46 +39,40 @@ const handleSubmit = (event) => {
           // console.log("weather: ", weather);
           for (const iterator of weather.data) {
             if (dataPick !== "") {
-              if (iterator.datetime === dataPick) {
-                console.log(iterator);
-                //Update UI
-                resultForm.innerHTML = "";
-                const carddiv = document.createElement("div");
-                carddiv.setAttribute("class", "card");
-                const imgCityElement = document.createElement("img");
-                const imgCountryElement = document.createElement("img");
-                imgCityElement.src = imageCity;
-                imgCityElement.alt = "image Of city";
-                imgCountryElement.src = imageCountry;
-                imgCountryElement.alt = "image of country";
-                imgCityElement.style.width = "100%";
-                imgCountryElement.style.width = "100%";
-                const h4Element = document.createElement("h4");
-                h4Element.innerHTML = data.city;
-                h4Element.style.textAlign = "center";
-                const pWeather = document.createElement("p");
-                pWeather.innerHTML = `Weather: ${iterator.weather.description}`;
-                const pTemp = document.createElement("p");
-                pTemp.innerHTML = `Temp: ${iterator.temp}`;
-                const pDate = document.createElement("p");
-                pDate.innerHTML = `Date: ${iterator.datetime}`;
-                const showMorebtn = document.createElement("button");
-                showMorebtn.innerHTML = "Show more of city";
-                carddiv.appendChild(imgCityElement);
-                carddiv.appendChild(h4Element);
-                carddiv.appendChild(pWeather);
-                carddiv.appendChild(pTemp);
-                carddiv.appendChild(pDate);
-                carddiv.appendChild(showMorebtn);
-                showMorebtn.addEventListener("click", () => {
-                  carddiv.appendChild(imgCountryElement);
-                });
-                resultForm.appendChild(carddiv);
-              }
-            } else {
+              // console.log('weather ',iterator);
+              //Update UI
+              const cardElement= document.createElement('div');
+              cardElement.className="card";
+              const imgCityElement=document.createElement('img');
+              imgCityElement.src=imageCity;
+              imgCityElement.alt="image of city";
+              imgCityElement.width="100";
+
+              const cityName=document.createElement('h4');
+              cityName.innerHTML=`<b>${data.city}</b>`;
+
+              const weatherStatus=document.createElement('p');
+              weatherStatus.innerHTML=`Weather: ${iterator.weather.description}`
+
+              const temp=document.createElement('p');
+              temp.innerHTML=`Temp: ${iterator.weather.temp} degree`;
               
+
+              const date=document.createElement('p');
+              date.innerHTML=`Date: ${iterator.datetime}`;
+
+              cardElement.appendChild(imgCityElement);
+              cardElement.appendChild(cityName);
+              cardElement.appendChild(weatherStatus);
+              cardElement.appendChild(temp);
+              cardElement.appendChild(date);
+              console.log(cardElement);
+              resultForm.appendChild(cardElement);
+            } else {
             }
           }
+          
+         
         });
       }
     );
@@ -100,7 +93,7 @@ const getNameAPI = async (url = "", data = {}) => {
   });
   try {
     const dataJson = await response.json();
-    console.log(dataJson);
+    // console.log(dataJson);
     const newdata = {
       lat: dataJson.geonames[0].lat,
       long: dataJson.geonames[0].lng,
@@ -126,7 +119,7 @@ const weatherAPI = async (url = "", data = {}) => {
   });
   try {
     const newData = await response.json();
-    console.log(newData);
+    // console.log('weather111 ',newData);
     return newData;
   } catch (error) {
     console.log(error);
@@ -148,12 +141,11 @@ const pixabayAPI = async (url = "", data = {}) => {
   try {
     const dataJson = await response.json();
     const dataImage = dataJson.hits[0].largeImageURL;
-    console.log(dataImage);
+    // console.log(dataImage);
     return dataImage;
   } catch (error) {
     console.log(error);
   }
 };
-
 
 export { handleSubmit };

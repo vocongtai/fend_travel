@@ -19,7 +19,7 @@ input {
 .card{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2);
     transition: 0.3s;
-    width: 40%;
+    width: 60%;
     border-radius: 5px;
     margin: 10px;
     height: auto;
@@ -28,7 +28,7 @@ img{
     border-radius: 5px 5px 0 0;
 }
 
-#results{
+#results-weather{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
