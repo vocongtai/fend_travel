@@ -1,9 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log(`Your API key is ${process.env.APIGeoName_ID}`);
-console.log(`Your Weahter API key is ${process.env.APIWeather_ID}`);
-console.log(`Your Pixabay API key is ${process.env.APIPixabay_ID}`);
 
 var path = require("path");
 const express = require("express");

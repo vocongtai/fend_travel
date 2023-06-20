@@ -86,10 +86,7 @@ const handleSubmit = (event) => {
   }
 };
 
-/**
- * CALL to GEONAMES API METHOD TO SERVER
- *a
- */
+// CALL to GEONAMES API METHOD TO SERVER
 
 const getNameAPI = async (url = "", data = {}) => {
   const response = await fetch(url, {
@@ -136,10 +133,8 @@ const weatherAPI = async (url = "", data = {}) => {
   }
 };
 
-/**
- * Call to API pixabay to server
- *
- */
+//Call to API pixabay to server
+
 const pixabayAPI = async (url = "", data = {}) => {
   const response = await fetch(url, {
     method: "POST",
@@ -160,23 +155,5 @@ const pixabayAPI = async (url = "", data = {}) => {
   }
 };
 
-// const postDataAPI = async (url = "", data = {}) => {
-//   const response = await fetch(url, {
-//     method: "POST",
-//     credentials: "same-origin",
-//     mode: "cors",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   });
-//   try {
-//     const newData = await response.json();
-//     console.log("Data:", newData);
-//     return newData;
-//   } catch (error) {
-//     console.log("error", error);
-//   }
-// };
 
 export { handleSubmit };
