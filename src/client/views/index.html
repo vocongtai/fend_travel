@@ -24,23 +24,25 @@
 
     <main>
         <section>
+            <h4>Enter your location: </h4>
             <form class="" onsubmit="return handleSubmit(event)">
-                <input id="url" type="text" name="input" value="" onblur="onBlur()" placeholder="Enter a URl">
+                <input id="location" type="text" name="input" value="" onblur="onBlur()" placeholder="Enter a location">
+                <input type="date" id="date" name="date">
                 <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
                     onsubmit="return handleSubmit(event)">
             </form>
         </section>
 
         <section>
-            <strong>Form Results:</strong>
             <div id="results">
-                <div id="errorMsg"></div>
-                <div id="agreement"></div>
-                <div id="confidence"></div>
-                <div id="irony"></div>
-                <div id="model"></div>
-                <div id="score_tag"></div>
+                <div class="card">
+                    <img src="" alt="pictureOfLocation" width="100%">
+                    <h4><b>dasdj</b></h4>
+                    <p>test</p>
+                    <button>Show more...</button>
+                </div>
             </div>
+
         </section>
     </main>
 

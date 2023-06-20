@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node src/server/index.js --open --openssl-legacy-provider start",
+    "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "build-dev": "webpack-dev-server  --config webpack.dev.js --open --openssl-legacy-provider build"
+    "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
     "express": "^4.18.2",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.11",
     "service-worker": "^0.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
